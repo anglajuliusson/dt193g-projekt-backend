@@ -1,7 +1,7 @@
 // Import the framework and instantiate it
 import Fastify from 'fastify'
 import cors from '@fastify/cors' // Importera cors
-import './config/db.js'
+import { routes } from './routes/productsRoutes.js'; // Importerar route-funktionerna från productsRoutes.js
 
 const fastify = Fastify({ logger: true }); 
 
@@ -9,6 +9,10 @@ const fastify = Fastify({ logger: true });
 await fastify.register(cors, {
   origin: '*', methods: ['GET', 'POST', 'PUT', 'DELETE'] // Tillåt alla origins (utveckling) och alla metoder
 })
+
+// Registrerar alla routes från routes-filen på Fastify-servern
+// Alla endpoints definierade i productsRoutes.js blir nu tillgängliga
+fastify.register(routes);
 
 // Run the server!
 try {
