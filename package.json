@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/anglajuliusson/dt193g-projekt-backend/issues"
   },
-  "homepage": "https://github.com/anglajuliusson/dt193g-projekt-backend#readme"
+  "homepage": "https://github.com/anglajuliusson/dt193g-projekt-backend#readme",
+  "dependencies": {
+    "fastify": "^5.7.0"
+  }
 }
