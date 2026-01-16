@@ -26,7 +26,7 @@ export const getStaffById = async(req, reply) => {
 // Funktion som lägger till ny användare
 export const addStaff = async(req, reply) => {
     try {
-        const { image, username, name, email, phone } = req.body;
+        const { image, username, name, email, phone, password } = req.body;
             
             // Validering: kolla att username är en icke-tom sträng
             if (!username || typeof username !== 'string' || username.trim() === '') {
@@ -48,14 +48,20 @@ export const addStaff = async(req, reply) => {
                 return reply.status(400).send({ error: "phone måste fyllas i korrekt." });
             }
 
+            // Validering: kolla att password är en icke-tom sträng
+            if (!password || typeof password !== 'string' || password.trim() === '') {
+                return reply.status(400).send({ error: "password måste fyllas i korrekt." });
+            }
+
         // SQL-fråga för att lägga till konsert
-        let staffData = await excuteQuery("insert into staff(image, username, name, email, phone) values(?, ?, ?, ?, ?)",
+        let staffData = await excuteQuery("insert into staff(image, username, name, email, phone, password) values(?, ?, ?, ?, ?, ?)",
             [
                 image,
                 username, 
                 name, 
                 email, 
-                phone
+                phone,
+                password
             ]
         );
         reply.status(201).send({ message: "Användare tillagd!", staffData});
@@ -68,7 +74,7 @@ export const addStaff = async(req, reply) => {
 export const updateStaff = async(req, reply) => {
     let id = req.params.id;
     try {
-        const { image, username, name, email, phone } = req.body;
+        const { image, username, name, email, phone, password } = req.body;
 
             // Validering: kolla att username är en icke-tom sträng
             if (!username || typeof username !== 'string' || username.trim() === '') {
@@ -90,14 +96,20 @@ export const updateStaff = async(req, reply) => {
                 return reply.status(400).send({ error: "phone måste fyllas i korrekt." });
             }
 
+            // Validering: kolla att password är en icke-tom sträng
+            if (!password || typeof password !== 'string' || password.trim() === '') {
+                return reply.status(400).send({ error: "password måste fyllas i korrekt." });
+            }
+
         // SQL-fråga för att uppdatera kategori
-        let staffData = await excuteQuery(`update staff set image=?, username=?, name=?, email=?, phone=? where id=${id}`,
+        let staffData = await excuteQuery(`update staff set image=?, username=?, name=?, email=?, phone=?, password=? where id=${id}`,
             [
                 image,
                 username, 
                 name, 
                 email, 
-                phone
+                phone,
+                password
             ]
         );
         reply.status(201).send({ message: "Användare uppdaterad!", staffData});
