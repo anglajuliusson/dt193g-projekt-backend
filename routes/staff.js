@@ -49,7 +49,7 @@ export const addStaff = async(req, reply) => {
             }
 
         // SQL-fråga för att lägga till konsert
-        let staffData = await excuteQuery("insert into staff(image, username, name, email, phone) values(?, ?, ?, ?)",
+        let staffData = await excuteQuery("insert into staff(image, username, name, email, phone) values(?, ?, ?, ?, ?)",
             [
                 image,
                 username, 
@@ -91,7 +91,7 @@ export const updateStaff = async(req, reply) => {
             }
 
         // SQL-fråga för att uppdatera kategori
-        let staffData = await excuteQuery(`update staff set image=? username=?, name=?, email=?, phone=? where id=${id}`,
+        let staffData = await excuteQuery(`update staff set image=?, username=?, name=?, email=?, phone=? where id=${id}`,
             [
                 image,
                 username, 
