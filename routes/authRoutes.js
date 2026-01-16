@@ -1,5 +1,5 @@
 // Importerar inloggningsfunktionen från auth-controller
-import { login } from "../controllers/auth.js";
+import { login } from "./auth.js";
 
 // Registrerar routes för autentisering
 export async function authRoutes(fastify) {
