@@ -4,6 +4,7 @@ import cors from '@fastify/cors' // Importera cors
 import { routes as productRoutes } from './routes/productsRoutes.js'; // Importerar route-funktionerna från productsRoutes.js
 import { routes as categoryRoutes } from './routes/categoriesRoutes.js'; // Importera route-funktionerna från categoriesRoutes.js
 import { routes as staffRoutes } from './routes/staffRoutes.js'; // Importera route-funktionerna från staffRoutes.js
+import { routes as authRoutes } from './routes/authRoutes.js'; // Importera route-funktonerna från authRoutes.js
 import fastifyStatic from "@fastify/static";
 import path from "path";
 
@@ -25,6 +26,7 @@ await fastify.register(fastifyStatic, {
 fastify.register(productRoutes);
 fastify.register(categoryRoutes);
 fastify.register(staffRoutes);
+fastify.register(authRoutes);
 
 // Run the server!
 try {
