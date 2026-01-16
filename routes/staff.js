@@ -26,7 +26,7 @@ export const getStaffById = async(req, reply) => {
 // Funktion som lägger till ny användare
 export const addStaff = async(req, reply) => {
     try {
-        const { username, name, email, phone } = req.body;
+        const { image, username, name, email, phone } = req.body;
             
             // Validering: kolla att username är en icke-tom sträng
             if (!username || typeof username !== 'string' || username.trim() === '') {
@@ -49,8 +49,9 @@ export const addStaff = async(req, reply) => {
             }
 
         // SQL-fråga för att lägga till konsert
-        let staffData = await excuteQuery("insert into staff(username, name, email, phone) values(?, ?, ?, ?)",
+        let staffData = await excuteQuery("insert into staff(image, username, name, email, phone) values(?, ?, ?, ?)",
             [
+                image,
                 username, 
                 name, 
                 email, 
@@ -67,7 +68,7 @@ export const addStaff = async(req, reply) => {
 export const updateStaff = async(req, reply) => {
     let id = req.params.id;
     try {
-        const { username, name, email, phone } = req.body;
+        const { image, username, name, email, phone } = req.body;
 
             // Validering: kolla att username är en icke-tom sträng
             if (!username || typeof username !== 'string' || username.trim() === '') {
@@ -90,8 +91,9 @@ export const updateStaff = async(req, reply) => {
             }
 
         // SQL-fråga för att uppdatera kategori
-        let staffData = await excuteQuery(`update staff set username=?, name=?, email=?, phone=? where id=${id}`,
+        let staffData = await excuteQuery(`update staff set image=? username=?, name=?, email=?, phone=? where id=${id}`,
             [
+                image,
                 username, 
                 name, 
                 email, 
