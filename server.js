@@ -1,7 +1,8 @@
 // Import the framework and instantiate it
 import Fastify from 'fastify'
 import cors from '@fastify/cors' // Importera cors
-import { routes } from './routes/productsRoutes.js'; // Importerar route-funktionerna från productsRoutes.js
+import { routes as productRoutes } from './routes/productsRoutes.js'; // Importerar route-funktionerna från productsRoutes.js
+import { routes as categoryRoutes } from './routes/categoriesRoutes.js'; // Importera route-funktionerna från categoriesRoutes.js
 import fastifyStatic from "@fastify/static";
 import path from "path";
 
@@ -19,8 +20,9 @@ await fastify.register(fastifyStatic, {
   });
 
 // Registrerar alla routes från routes-filen på Fastify-servern
-// Alla endpoints definierade i productsRoutes.js blir nu tillgängliga
-fastify.register(routes);
+// Alla endpoints definierade i routesen blir nu tillgängliga
+fastify.register(productRoutes);
+fastify.register(categoryRoutes);
 
 // Run the server!
 try {
