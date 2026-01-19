@@ -1,4 +1,5 @@
 import { excuteQuery } from '../config/db.js' // Importera hjälpfunktionen för attt köra SQL-frågor mot MySQL
+import bcrypt from "bcrypt"; // Importera bcrypt för hashade lösenord
 
 // Funktion som hämtar alla användare från databasen
 export const getAllStaff = async(req, reply) => {
@@ -27,6 +28,9 @@ export const getStaffById = async(req, reply) => {
 export const addStaff = async(req, reply) => {
     try {
         const { image, username, name, email, phone, password } = req.body;
+
+            // Hashat lösenord
+            const hashedPassword = await bcrypt.hash(password, 10);
             
             // Validering: kolla att username är en icke-tom sträng
             if (!username || typeof username !== 'string' || username.trim() === '') {
@@ -61,7 +65,7 @@ export const addStaff = async(req, reply) => {
                 name, 
                 email, 
                 phone,
-                password
+                hashedPassword
             ]
         );
         reply.status(201).send({ message: "Användare tillagd!", staffData});
@@ -75,6 +79,9 @@ export const updateStaff = async(req, reply) => {
     let id = req.params.id;
     try {
         const { image, username, name, email, phone, password } = req.body;
+
+            // Hasha nytt lösenord
+            const hashedPassword = await bcrypt.hash(password, 10);
 
             // Validering: kolla att username är en icke-tom sträng
             if (!username || typeof username !== 'string' || username.trim() === '') {
@@ -109,7 +116,7 @@ export const updateStaff = async(req, reply) => {
                 name, 
                 email, 
                 phone,
-                password
+                hashedPassword
             ]
         );
         reply.status(201).send({ message: "Användare uppdaterad!", staffData});
