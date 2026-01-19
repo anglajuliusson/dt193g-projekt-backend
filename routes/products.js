@@ -63,7 +63,7 @@ export const addProduct = async(req, reply) => {
                 return reply.status(400).send({ error: "stock_quantity måste vara ett heltal." });
             }            
 
-        // SQL-fråga för att lägga till konsert
+        // SQL-fråga för att lägga till produkt
         let productsData = await excuteQuery("insert into products(image, article_number, name, description, category, price, stock_quantity) values(?, ?, ?, ?, ?, ?, ?)",
             [
                 image, 
