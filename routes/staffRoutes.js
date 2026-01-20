@@ -1,4 +1,4 @@
-import { addStaff, deleteStaffById, getAllStaff, getStaffById, updateStaff } from './staff.js'; // Importerar controller-funktionerna från staff.js
+import { addStaff, deleteStaffById, getAllStaff, getStaffById, updateStaff, getMe } from './staff.js'; // Importerar controller-funktionerna från staff.js
 
 export async function routes(fastify) {
     // Registrerar GET-route och kopplar till controller-funktionen
@@ -7,4 +7,5 @@ export async function routes(fastify) {
     fastify.post('/staff', addStaff); // Route för att lägga till ny användare
     fastify.put('/staff/:id', updateStaff); // Route för att uppdatera en användare med specifikt id
     fastify.delete('/staff/:id', deleteStaffById); // Route för att radera en användare med specifikt id
+    fastify.get('/staff/me', getMe); // ny endpoint
 };
