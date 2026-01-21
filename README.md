@@ -16,9 +16,10 @@ Detta är backend-delen av Lundbergs Bryggeri-projektet. Den tillhandahåller en
 - Säker API-access med token
 
 ## Starta servern
-Kommando: npm run start
-Servern körs då på http://localhost:3000.
+- Kommando: npm run start
+- Servern körs då på http://localhost:3000.
 
+## Endpoints
 | Endpoint          | Metod          | Beskrivning                      |
 | ----------------- | -------------- | -------------------------------- |
 | `/login`          | POST           | Logga in användare               |
